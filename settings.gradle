@@ -1,0 +1,52 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+    // Gradle7 依赖版本管理 version catalogs
+    versionCatalogs {
+        create('androidxLibs') {
+            // 别名 group artifact version
+            library('core-ktx', 'androidx.core', 'core-ktx').version('1.10.1')
+            library('lifecycle-runtime-ktx', 'androidx.lifecycle', 'lifecycle-runtime-ktx').version('2.6.1')
+            library('activity-compose', 'androidx.activity', 'activity-compose').version('1.7.0')
+            library('core-ktx', 'androidx.core', 'core-ktx').version('1.10.1')
+            library('ui-core', 'androidx.compose.ui', 'ui').withoutVersion()
+            library('ui-graphics', 'androidx.compose.ui', 'ui-graphics').withoutVersion()
+            library('ui-tooling-preview', 'androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
+            library('material3', 'androidx.compose.material3', 'material3').withoutVersion()
+            library('ui-tooling', 'androidx.compose.ui', 'ui-tooling').withoutVersion()
+            library('ui-test-manifest', 'androidx.compose.ui', 'ui-test-manifest').withoutVersion()
+            // androidx通用依赖
+            bundle('androidx', ['core-ktx', 'lifecycle-runtime-ktx', 'activity-compose', 'core-ktx', 'ui-core',
+                                'ui-graphics', 'ui-tooling-preview', 'material3'])
+        }
+        create('googleLibs') {
+            library('material', 'com.google.android', 'material').version('1.11.0')
+        }
+        create('buildSdk') {
+            version('compileSdk', '34')
+            version('minSdk', '24')
+            version('targetSdk', '34')
+        }
+//        create('pluginLibs') {
+//            plugin('arouter-register', 'com.alibaba:arouter-register').version('1.0.2')
+//        }
+        // libs.libraries.xxx
+        create("libs") {
+            from(files("libs.versions.toml"))
+        }
+    }
+}
+
+rootProject.name = "mixedTestCases"
+include ':app'
