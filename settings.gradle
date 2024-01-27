@@ -33,6 +33,12 @@ dependencyResolutionManagement {
         create('googleLibs') {
             library('material', 'com.google.android', 'material').version('1.11.0')
         }
+        create('otherLibs') {
+            library('voyager-koin', 'cafe.adriel.voyage', 'voyager-koin').version('1.0.0')
+            library('voyager-hilt', 'cafe.adriel.voyage', 'voyager-hilt').version('1.0.0')
+            library('voyager-livedata', 'cafe.adriel.voyage', 'voyager-livedata').version('1.0.0')
+            bundle('voyager', ['voyager-koin', 'voyager-hilt', 'voyager-livedata'])
+        }
         create('buildSdk') {
             version('compileSdk', '34')
             version('minSdk', '24')
